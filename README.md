@@ -61,7 +61,7 @@ GROQ_API_KEY=tu_api_key
 ## Ejecutar proyecto
 
 ```bash
-python main.py
+python -m app.main
 ```
 
 ## Objetivo del proyecto
