@@ -1,0 +1,11 @@
+# Entorno virtual
+.venv/
+
+# Variables privadas
+.env
+
+# Cache Python
+__pycache__/
+
+# Memoria del chatbot
+memory.json
