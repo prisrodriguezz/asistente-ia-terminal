@@ -29,7 +29,7 @@ Proyecto desarrollado en Python que permite interactuar con un asistente de inte
 1. Clonar repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/prisrodriguezz/asistente-ia-terminal.git
 ```
 
 2. Crear entorno virtual
