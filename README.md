@@ -5,17 +5,26 @@ Proyecto desarrollado en Python que permite interactuar con un asistente de inte
 ## Funcionalidades
 
 - Chat interactivo en terminal
-- Contexto conversacional
 - Memoria persistente mediante JSON
-- Comandos personalizados
 - Manejo básico de errores
+- Lectura de archivos `.txt`
+- Generación automática de resúmenes
+- Exportación de resúmenes en archivos `.txt`
 
 ## Comandos disponibles
 
+### Chat
 - `/help` → Mostrar ayuda
+- `/tools` → Entrar en modo herramientas
 - `/history` → Ver historial de conversación
 - `/clear` → Borrar memoria del chat
 - `/exit` → Cerrar el asistente
+
+### Modo Herramientas
+- `/read` → Leer archivo .txt
+- `/summarize` → Generar resumen
+- `/export` → Exportar resumen
+- `/return` → Volver al chat
 
 ## Tecnologías utilizadas
 
@@ -72,4 +81,4 @@ Este proyecto fue desarrollado con el objetivo de aprender:
 - Manejo de contexto conversacional
 - Persistencia de datos
 - Organización de código en Python
-- Desarrollo de asistentes IA simples
+- Desarrollo de asistentes IA por terminal
