@@ -25,7 +25,8 @@ class ChatAgent:
 
         self.mode = "chat"  # Inicia en modo chat
 
-        self.current_file = None    # Archivo actual para utilizar en modo herramientas
+        self.current_file = None
+        self.last_summary = None
 
     def start(self):
 
@@ -94,6 +95,88 @@ class ChatAgent:
 
             return
         
+        # Generar resumen del archivo subido
+        if user_input == "/summarize":
+
+            # Validar existencia de archivo
+            if not self.current_file:
+                print("\nNo hay archivo cargado\n")
+                return
+            
+            # Mostrar archivo actual
+            print("\nArchivo actual: " + self.current_file["path"])
+
+            # Obtener contenido del archivo
+            content = self.current_file["content"]
+
+            # Prompt para la IA
+            prompt = f"""
+            Realiza un resumen claro, breve y explicativo del siguiente texto.
+
+            IMPORTANTE:
+            - Utiliza texto plano.
+            - No uses markdown.
+            - No uses tablas markdown.
+            - No uses símbolos como ** o #.
+            - Organiza la información de forma clara para exportar en un archivo .txt.
+
+            Texto:  {content}
+            """
+            # Enviar prompt
+            try:
+                summary = send_message([
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ])
+            except Exception as error:
+                print("\nOcurrio un error: ", error)
+
+                return
+            
+            self.last_summary = summary         # Guarda el resumen para poder exportar
+
+            # Mostrar resumen
+            print("\n============ RESUMEN ============\n")
+            print(summary)
+            print("\n=================================\n")
+
+            show_tools()
+
+            return
+
+        # Exportar resumen del archivo
+        if user_input == "/export":
+            if not self.last_summary:
+                print("\nNo existe resumen disponible para exportar.\n")
+                return
+            
+            # Obtener nombre del archivo original
+            original_path = self.current_file["path"]
+
+            # Separar nombre y extension
+            file_name, extension = os.path.splitext(original_path)
+
+            # Crear nuevo nombre para el archivo con resumen
+            export_path = f"{file_name}(resumen){extension}"
+
+            # Crear archivo para exportar
+            try:
+                with open(export_path, 'w', encoding="utf-8") as file:
+                    file.write(self.last_summary)
+
+            except Exception as error:
+                print("\nOcurrio un error: ", error)
+
+                return
+            
+            print("\nResumen exportado correctamente!\n")
+            print(f"Ruta del archivo: {export_path}\n")
+
+            show_tools()
+            return
+
 
     # Funcion para el chat normal
     def handle_chat(self, user_input):
