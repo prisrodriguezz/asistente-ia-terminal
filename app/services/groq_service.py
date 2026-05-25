@@ -2,7 +2,7 @@
 from groq import Groq
 from app.config.settings import GROQ_API_KEY, MODEL_NAME
 
-# Creamos el cliente de Groq usando la API Key
+# Creamos el cliente para interactuar con la API de Groq usando la API Key
 client = Groq(
     api_key=GROQ_API_KEY
 )

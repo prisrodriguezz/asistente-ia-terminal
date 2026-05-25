@@ -5,6 +5,7 @@ def show_help():
 Comandos disponibles:
 
 /help     → Mostrar ayuda
+/tools    → Ver herramientas
 /history  → Ver historial
 /clear    → Borrar memoria
 /exit     → Salir
@@ -20,3 +21,18 @@ def show_history(messages):
         print(f"{message['role']}: {message['content']}")
 
     print("=================\n")
+
+# Funcion herramientas
+def show_tools():
+    print("""
+===============================
+>>>>>> MODO HERRAMIENTAS <<<<<<
+===============================
+          
+Herramientas disponibles:
+
+/read        → Leer archivo .txt
+/summarize   → Generar resumen
+/export      → Exportar resumen
+/return      → Volver al chat
+""")

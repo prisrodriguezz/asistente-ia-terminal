@@ -2,6 +2,7 @@ import json
 
 MEMORY_PATH = "app/memory/memory.json"
 
+# Memoria por defecto
 DEFAULT_MEMORY = [
     {
         "role": "system",
@@ -14,6 +15,7 @@ def load_memory():
 
     try:
 
+        # Abre el archivo memory.json y lo lee, convierte JSON a Python y retorna la memoria guardada
         with open(MEMORY_PATH, "r", encoding="utf-8") as file:
 
             return json.load(file)
@@ -37,6 +39,6 @@ def save_memory(messages):
 # Limpiar memoria
 def clear_memory():
 
-    save_memory(DEFAULT_MEMORY)
+    save_memory(DEFAULT_MEMORY)     # Sobrescribe el archivo memory.json con la memoria por defecto
 
     return DEFAULT_MEMORY.copy()
